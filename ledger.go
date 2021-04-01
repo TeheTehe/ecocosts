@@ -29,6 +29,21 @@ func viewTransaction() ([]transaction, error) {
 	return t, nil
 }
 
+func addTransaction(input transaction) error {
+
+	sqlStatement := `
+		INSERT INTO transactions (id, client_id, cat_id, amount, balance,
+			description, time)
+		VALUES ($1, $2, $3, $4, $5, $6, $7`
+	_, err := db.Exec(sqlStatement, input.ID, input.Client_id, input.Cat_id, input.Amount, input.Balance,
+		input.Description, input.Time)
+
+	if err != nil {
+		panic(err)
+	}
+	return nil
+}
+
 func ledgerHandler(w http.ResponseWriter, r *http.Request) {
 	t, err := viewTransaction()
 	if err != nil {
