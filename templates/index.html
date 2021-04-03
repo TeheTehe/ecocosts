@@ -1,10 +1,55 @@
 <html>
-  {{template "head"}}
-  <body>
-	  {{template "nav"}}
-		<main>
-		  hello world
-    </main>
-		{{template "footer"}}
-	</body>
+{{template "head"}}
+<body>
+{{template "nav"}}
+<main>
+  <h1>Hello, {{ .Name }}
+  <h1>Stocks</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Quantity</th>
+      <th>Previous Close</th>
+      <th>Current Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{ range $s := .Stocks }}
+    <tr>
+      <td>{{ $s.Symbol }}</td>
+      <td>{{ $s.Quantity }}</td>
+      <td>{{ $s.Price.PrevClose }}</td>
+      <td>{{ $s.Price.CurrPrice }}</td>
+    </tr>
+    {{ end }}
+    </tbody>
+  </table>
+  <h1>Categories and Budgets</h1>
+  <h1>Latest Transactions</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>cat_id</th>
+        <th>amount</th>
+        <th>balance</th>
+        <th>description</th>
+        <th>time</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{ range $t := .Transactions }}
+    <tr>
+      <td>{{ $t.Cat_id.Int64 }}</td>
+      <td>{{ $t.Amount }}</td>
+      <td>{{ $t.Balance }}</td>
+      <td>{{ $t.Description.String }}</td>
+      <td>{{ $t.Time }}</td>
+    </tr>
+    {{ end }}
+    </tbody>
+  </table>
+</main>
+{{template "footer"}}
+</body>
 </html>
