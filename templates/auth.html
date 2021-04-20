@@ -1,26 +1,29 @@
 <html>
 {{template "head"}}
 <body>
-{{template "nav"}}
+
 <main>
-  <h1>Login</h1>
-  <form method="post">
-    <label for="name">Username:</label>
-    <input type="text" name="name">
-    <label for="pass">Password:</label>
-    <input type="password" name="pass">
-    <input type="hidden" name="action" value="login">
-    <input type="submit" value="Submit">
-  </form>
-  <h1>Register</h1>
-  <form method="post">
-    <label for="name">Username:</label>
-    <input type="text" name="name">
-    <label for="pass">Password:</label>
-    <input type="password" name="pass">
-    <input type="hidden" name="action" value="register">
-    <input type="submit" value="Submit">
-  </form>
+  <div class="authContent">
+    <img src="/assets/logo.png" class="imageAuth" width="150"> 
+    <h1 class="authH1">Login</h1>      
+      <form class="authForm" method="post">
+        <label for="name">Username:</label>
+        <input type="text" name="name">
+        <label for="pass">Password:</label>
+        <input type="password" name="pass">
+        <input type="hidden" name="action" value="login">
+        <input type="submit" value="Submit">
+      </form>    
+    <h1 class="authH1">Register</h1>    
+      <form class="authForm" method="post">
+        <label for="name">Username:</label>
+        <input type="text" name="name">
+        <label for="pass">Password:</label>
+        <input type="password" name="pass">
+        <input type="hidden" name="action" value="register">
+        <input type="submit" value="Submit">
+      </form>    
+  </div>
 </main>
 {{template "footer"}}
 </body>

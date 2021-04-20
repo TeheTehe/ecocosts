@@ -1,18 +1,21 @@
 {{define "nav"}}
+<head>
+  <link rel="stylesheet" href="/assets/stylesheetNav.css">
+</head>
 <nav>
   {{ if . }}
   Hello, {{ . }}
-  <a href="/">Dashboard</a>
-  &mdash;
-  <a href="/ledger">Transactions</a>
-  &mdash;
-  <a href="/budget">Budgets</a>
-  &mdash;
-  <a href="/stock">Stocks</a>
+  <ul>
+    <li><a href="/">Dashboard</a></li>
+    <li><a href="/ledger">Transactions</a></li>
+    <li><a href="/budget">Budgets</a></li>
+    <li><a href="/stock">Stocks</a></li>
+  </ul>
   {{ else }}
-  <a href="/auth">Log in</a>
-  &mdash;
-  <a href="/auth">Sign up</a>
+  <ul>
+    <li><a href="/auth">Log in</a></li>
+    <li><a href="/auth">Sign up</a></li>
+  </ul>
   {{ end }}
 </nav>
 {{end}}

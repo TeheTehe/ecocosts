@@ -3,38 +3,44 @@
 <body>
 {{template "nav" .Name }}
 <main>
-  <h1>Add Stock</h1>
-  <p>WARNING: Adding a existing symbol with override the current quantity.</p>
-  <form method="post">
-    <label for="symbol">Symbol:</label>
-    <input type="text" name="symbol" required>
-    <label for="quantity">Quantity:</label>
-    <input type="text" name="quantity" required>
-    <input type="submit" value="Submit">
-  </form>
-  <h1>Stocks</h1>
-  <table>
-    <thead>
-    <tr>
-      <th>Symbol</th>
-      <th>Quantity</th>
-      <th>Previous Close</th>
-      <th>Current Price</th>
-      <th>Delete me?</th>
-    </tr>
-    </thead>
-    <tbody>
-    {{ range $s := .Stocks }}
-    <tr>
-      <td><a href="https://finance.yahoo.com/quote/{{ $s.Symbol }}">{{ $s.Symbol }}</a></td>
-      <td>{{ $s.Quantity }}</td>
-      <td>{{ $s.Price.PrevClose }}</td>
-      <td>{{ $s.Price.CurrPrice }}</td>
-      <td><a href="/stock/delete/{{ $s.Symbol }}">DELETE</a></td>
-    </tr>
-    {{ end }}
-    </tbody>
-  </table>
+  <div class="stockContent">
+    <div class="stockAdd">
+      <h1 class="stockH1">Add Stock</h1>
+      <p class="warning">WARNING: Adding an existing symbol will override the current quantity.</p>
+      <form class="stockForm" method="post">
+        <label for="symbol">Symbol:</label>
+        <input type="text" name="symbol" required>
+        <label for="quantity">Quantity:</label>
+        <input type="text" name="quantity" required>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    <div class="showStock">
+      <h1 class="stockH1">Stocks</h1>
+      <table class="stockTable">
+        <thead class="stockThread">
+        <tr class="stockTR">
+          <th>Symbol</th>
+          <th>Quantity</th>
+          <th>Previous Close</th>
+          <th>Current Price</th>
+          <th>Delete me?</th>
+        </tr>
+        </thead>
+        <tbody class="tbodyStock">
+        {{ range $s := .Stocks }}
+        <tr class="stockTR">
+          <td><a href="https://finance.yahoo.com/quote/{{ $s.Symbol }}">{{ $s.Symbol }}</a></td>
+          <td>{{ $s.Quantity }}</td>
+          <td>{{ $s.Price.PrevClose }}</td>
+          <td>{{ $s.Price.CurrPrice }}</td>
+          <td><a href="/stock/delete/{{ $s.Symbol }}">DELETE</a></td>
+        </tr>
+        {{ end }}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </main>
 {{template "footer"}}
 </body>

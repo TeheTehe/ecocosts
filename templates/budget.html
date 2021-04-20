@@ -3,35 +3,46 @@
 <body>
 {{template "nav" .Client.Name }}
 <main>
-  <h1>Create Budget</h1>
-  <form method="post">
-    <label for="amount">Amount:</label>
-    <input type="text" name="amount" required>
-    <label for="category">Category:</label>
-    <select name="category">
-      {{ range $c := .Categories }}
-      <option value="{{ $c.ID }}">{{ $c.Description }}</option>
-      {{ end }}
-    </select>
-    <input type="submit" value="Submit">
-  </form>
-  <h1>Budgets</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Category</th>
-        <th>Amount</th>
-      </tr>
-    </thead>
-    <tbody>
-    {{ range $b := .Client.Budgets }}
-    <tr>
-      <td>{{ $b.Category.Description }}</td>
-      <td>{{ $b.Amount }}</td>
-    </tr>
-    {{ end }}
-    </tbody>
-  </table>
+  <div class="budgetContent">
+    <div class="inputBudget">
+      <h1 class="budgetH1">Create Budget</h1>    
+      <form class="budgetForm" method="post">
+        <label for="amount">Amount:</label>
+        <input type="text" name="amount" required>
+        <label for="category">Category:</label>
+        <select name="category">
+          {{ range $c := .Categories }}
+          <option value="{{ $c.ID }}">{{ $c.Description }}</option>
+          {{ end }}
+        </select>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    <div class="showBudget">
+      <h1 class="budgetH1">Budgets</h1>
+      <div class="tableDiv">
+        <table class="budgetTable">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+          {{ range $b := .Client.Budgets }}
+          <tr>
+            <td>{{ $b.Category.Description }}</td>
+            <td>{{ $b.Amount }}</td>
+          </tr>
+          {{ end }}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="logoWrapper">
+      <img class="budgetLogo" src="/assets/logo.png" width="350px">
+    </div>
+  </div>
 </main>
 {{template "footer"}}
 </body>

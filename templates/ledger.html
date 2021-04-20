@@ -3,45 +3,49 @@
 <body>
 {{template "nav" .Client.Name }}
 <main>
-  <h1>Create Transaction</h1>
-  <form method="post">
-    <label for="amount">Amount:</label>
-    <input type="text" name="amount" required>
-    <label for="description">Description:</label>
-    <input type="text" name="description">
-    <label for="category">Category:</label>
-    <select name="category">
-      <option value="0">None</option>
-      {{ range $c := .Categories }}
-      <option value="{{ $c.ID }}">{{ $c.Description }}</option>
-      {{ end }}
-    </select>
-    <input type="submit" value="Submit">
-  </form>
-  <h1>Transactions</h1>
-  <p>Last 1000 transactions</p>
-  <table>
-    <thead>
-      <tr>
-        <th>cat_id</th>
-        <th>amount</th>
-        <th>balance</th>
-        <th>description</th>
-        <th>time</th>
-      </tr>
-    </thead>
-    <tbody>
-    {{ range $t := .Client.Transactions }}
-    <tr>
-      <td>{{ $t.Cat_name }}</td>
-      <td>{{ $t.Amount }}</td>
-      <td>{{ $t.Balance }}</td>
-      <td>{{ $t.Description.String }}</td>
-      <td>{{ $t.Time.Format "2006 Jan 02 03:04 PM" }}</td>
-    </tr>
-    {{ end }}
-    </tbody>
-  </table>
+    <div class="transactions">
+    <h1 class="ledgerH1">Create Transaction</h1>  
+      <form method="post">
+        <label for="amount">Amount:</label>
+        <input type="text" name="amount" required>
+        <label for="description">Description:</label>
+        <input type="text" name="description">
+        <label for="category">Category:</label>
+        <select name="category">
+          <option value="0">None</option>
+          {{ range $c := .Categories }}
+          <option value="{{ $c.ID }}">{{ $c.Description }}</option>
+          {{ end }}
+        </select>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  <h1 class="ledgerH1">Transactions</h1>
+  <p class="ledgerH1">Last 1000 transactions</p>  
+    <div class="tablehistory">
+      <table class="ledgerTable">
+        <thead>
+          <tr class="ledgerTR">
+            <th class="ledgerTH">Category</th>
+            <th class="ledgerTH">Amount</th>
+            <th class="ledgerTH">Balance</th>
+            <th class="ledgerTH">Description</th>
+            <th class="ledgerTH">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+        {{ range $t := .Client.Transactions }}
+        <tr class="ledgerTR">
+          <td>{{ $t.Cat_name }}</td>
+          <td>{{ $t.Amount }}</td>
+          <td>{{ $t.Balance }}</td>
+          <td>{{ $t.Description.String }}</td>
+          <td>{{ $t.Time.Format "2006 Jan 02 03:04 PM" }}</td>
+        </tr>
+        {{ end }}
+        </tbody>
+      </table>
+    </div>
 </main>
 {{template "footer"}}
 </body>

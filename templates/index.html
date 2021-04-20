@@ -1,53 +1,140 @@
 <html>
 {{template "head"}}
+<style>
+  .tansactionsTable {
+    padding: 25px;
+    grid-column: 2;
+    grid-row: 1;
+    border-right: 15px solid black;
+    border-bottom: 5px double black;
+    border-left: 3px double black;
+  }
+  
+  table {
+    text-align: center;
+  }
+  th {
+    text-align: center;
+  }
+  td {
+    text-align: center;
+  }
+  .indexH1 {
+    text-decoration: underline;
+    text-align: center;
+  }
+  .indexContent {
+    margin-top: 20px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .indexWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-content: center;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .stocksTable {
+    text-align: center;
+    align-items: center;
+    padding: 25px;
+    grid-column: 1;
+    grid-row: 1;
+    border-left: 15px solid black;
+    border-bottom: 5px double black;
+    border-right: 3px double black;
+  }
+  
+  .categoriesTable {
+    padding: 25px;
+    grid-column: 1;
+    grid-row: 2;
+    border-left: 15px solid black;
+    border-top: 5px double black;
+    border-right: 3px double black;
+  }
+
+  .filler {
+    padding: 25px;
+    grid-column: 2;
+    grid-row: 2;
+    border-right: 15px solid black;
+    border-top: 5px double black;
+    border-left: 3px double black;
+  }
+  .tS{
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .tT{
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>  
 <body>
 {{template "nav" .Name }}
 <main>
-  <h1>Stocks</h1>
-  <table>
-    <thead>
-    <tr>
-      <th>Symbol</th>
-      <th>Quantity</th>
-      <th>Previous Close</th>
-      <th>Current Price</th>
-    </tr>
-    </thead>
-    <tbody>
-    {{ range $s := .Stocks }}
-    <tr>
-      <td>{{ $s.Symbol }}</td>
-      <td>{{ $s.Quantity }}</td>
-      <td>{{ $s.Price.PrevClose }}</td>
-      <td>{{ $s.Price.CurrPrice }}</td>
-    </tr>
-    {{ end }}
-    </tbody>
-  </table>
-  <h1>Categories and Budgets</h1>
-  <h1>Latest Transactions</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>cat_id</th>
-        <th>amount</th>
-        <th>balance</th>
-        <th>description</th>
-        <th>Time in UTC</th>
-      </tr>
-    </thead>
-    <tbody>
-    {{ range $t := .Transactions }}
-    <tr>
-      <td>{{ $t.Cat_name }}</td>
-      <td>{{ $t.Amount }}</td>
-      <td>{{ $t.Balance }}</td>
-      <td>{{ $t.Description.String }}</td>
-      <td>{{ $t.Time.Format "2006 Jan 02 03:04 PM" }}</td>
-    </tr>
-    {{ end }}
-    </tbody>
-  </table>
+  <div class="indexContent">
+  <div class="indexWrapper">
+    <div class="stocksTable">
+      <h1 class="indexH1">Stocks</h1>
+      <table class="tS">
+        <thead class="thread">
+        <tr>
+          <th>Symbol</th>
+          <th>Quantity</th>
+          <th>Previous Close</th>
+          <th>Current Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{ range $s := .Stocks }}
+        <tr>
+          <td><a href="https://finance.yahoo.com/quote/{{ $s.Symbol }}">{{ $s.Symbol }}</a></td>
+          <td>{{ $s.Quantity }}</td>
+          <td>{{ $s.Price.PrevClose }}</td>
+          <td>{{ $s.Price.CurrPrice }}</td>
+        </tr>
+        {{ end }}
+        </tbody>
+      </table>
+    </div>
+    <div class="categoriesTable">
+      <h1 class="indexH1">Categories and Budgets</h1>
+    </div>
+    <div class="tansactionsTable">
+      <h1 class="indexH1">Latest Transactions</h1>
+      <table class="tT">
+        <thead class="thread">
+          <tr>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Balance</th>
+            <th>Description</th>
+            <th>Time in UTC</th>
+          </tr>
+        </thead>
+        <tbody>
+        {{ range $t := .Transactions }}
+        <tr>
+          <td>{{ $t.Cat_name }}</td>
+          <td>{{ $t.Amount }}</td>
+          <td>{{ $t.Balance }}</td>
+          <td>{{ $t.Description.String }}</td>
+          <td>{{ $t.Time.Format "2006 Jan 02 03:04 PM" }}</td>
+        </tr>
+        {{ end }}
+        </tbody>
+      </table>
+    </div>
+    <div class="filler"></div>
+  </div>
+  </div>
 </main>
 {{template "footer"}}
 </body>
