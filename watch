@@ -1,0 +1,6 @@
+#!/bin/fish
+while inotifywait -e close_write .
+	killall ecocosts
+	go build
+	./ecocosts & disown
+end
