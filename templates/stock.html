@@ -26,7 +26,7 @@
     <tbody>
     {{ range $s := .Stocks }}
     <tr>
-      <td>{{ $s.Symbol }}</td>
+      <td><a href="https://finance.yahoo.com/quote/{{ $s.Symbol }}">{{ $s.Symbol }}</a></td>
       <td>{{ $s.Quantity }}</td>
       <td>{{ $s.Price.PrevClose }}</td>
       <td>{{ $s.Price.CurrPrice }}</td>
