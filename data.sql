@@ -9,7 +9,7 @@ GRANT ALL PRIVILEGES ON stock TO postgres;
 
 -- PSEUDO CLIENTS
 INSERT INTO client VALUES (
-	DEFAULT, 'john', 'pass'
+	DEFAULT, 'john', '$2a$10$UEBUVEVqVIvmJHTcA.J7gOrtcjPhLIUCZwLfpup4ctnmR6GhLi0tC'
 );
 
 -- DEFAULT CATEGORIES
